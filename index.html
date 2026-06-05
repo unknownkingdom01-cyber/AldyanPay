@@ -32,10 +32,7 @@
 
     </div>
 
-    <h2>Saldo: <span id="saldo">0</span></h2>
-
-<button onclick="tambahSaldo()">Tambah</button>
-<button onclick="resetSaldo()">Reset</button>
+    <h2>Saldo kamu sekarang: Rp <span id="saldo">0</span></h2>
     
     <!-- TARGET TABUNGAN -->
     <div class="card">
@@ -173,6 +170,26 @@ setInterval(() => {
   }
 }, 200);
 </script>
+
+    <script>
+let saldo = 0;
+
+function updateSaldo() {
+  document.getElementById("saldo").innerText = saldo;
+}
+
+function tambahSaldo() {
+  saldo += 10000;
+  updateSaldo();
+}
+
+function resetSaldo() {
+  saldo = 0;
+  updateSaldo();
+}
+
+updateSaldo();
+    </script>
     
 </body>
 </html>
