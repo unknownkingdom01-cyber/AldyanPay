@@ -1,93 +1,97 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AldyanPay</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aldyan Pay</title>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 60px;
-      background: #f2f2f2;
-    }
+<link rel="stylesheet" href="style.css">
 
-    .box {
-      background: white;
-      padding: 20px;
-      margin: auto;
-      width: 300px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    button {
-      padding: 10px;
-      margin: 5px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .tambah {
-      background: green;
-      color: white;
-    }
-
-    .reset {
-      background: red;
-      color: white;
-    }
-  </style>
 </head>
-
 <body>
 
-  <div class="box">
-    <h2>AldyanPay</h2>
+<header>
+    <h1>💳 Aldyan Pay</h1>
+    <p>Kelola Keuangan Dengan Mudah</p>
+</header>
 
-    <h3>Saldo kamu:</h3>
-    <h1>Rp <span id="saldo">0</span></h1>
+<div class="container">
 
-    <button class="tambah" onclick="tambahSaldo()">+500</button>
-    <button class="reset" onclick="resetSaldo()">Reset</button>
-  </div>
+    <!-- SALDO -->
+    <div class="card saldo">
+        <h2>Saldo Saat Ini</h2>
+        <h1 id="saldo">Rp 0</h1>
+    </div>
 
-  <script>
-    // AMBIL DATA DARI STORAGE (BIAR TIDAK HILANG SAAT REFRESH)
-    let saldo = localStorage.getItem("saldo");
-    saldo = saldo ? parseInt(saldo) : 0;
+    <!-- RINGKASAN -->
+    <div class="menu">
 
-    function updateSaldo() {
-      document.getElementById("saldo").innerText = saldo;
-      localStorage.setItem("saldo", saldo);
-    }
+        <div class="card">
+            <h3>📈 Pemasukan</h3>
+            <p id="totalMasuk">Rp 0</p>
+        </div>
 
-    function tambahSaldo() {
-      saldo += 500;
-      updateSaldo();
-    }
+        <div class="card">
+            <h3>📉 Pengeluaran</h3>
+            <p id="totalKeluar">Rp 0</p>
+        </div>
 
-    function resetSaldo() {
-      saldo = 0;
-      updateSaldo();
-      alert("Saldo sudah direset!");
-    }
+    </div>
 
-    // ANTI BUG / ANTI MINUS
-    setInterval(() => {
-      if (saldo < 0 || isNaN(saldo)) {
-        saldo = 0;
-        updateSaldo();
-      }
-    }, 500);
+    <!-- TARGET TABUNGAN -->
+    <div class="card">
 
-    updateSaldo();
-  </script>
+        <h2>🎯 Target Tabungan</h2>
 
-</body>
-</html>
+        <input
+            type="text"
+            id="namaTarget"
+            placeholder="Nama Target">
+
+        <input
+            type="number"
+            id="jumlahTarget"
+            placeholder="Nominal Target">
+
+        <button onclick="tambahTarget()">
+            Tambah Target
+        </button>
+
+        <div id="daftarTarget"></div>
+
+    </div>
+
+    <!-- TRANSAKSI -->
+    <div class="card">
+
+        <h2>💸 Transaksi</h2>
+
+        <input
+            type="text"
+            id="keterangan"
+            placeholder="Keterangan">
+
+        <input
+            type="number"
+            id="nominal"
+            placeholder="Nominal">
+
+        <select id="jenisTransaksi">
+            <option value="masuk">
+                📈 Pemasukan
+            </option>
+
+            <option value="keluar">
+                📉 Pengeluaran
+            </option>
+        </select>
+
+        <button onclick="tambahTransaksi()">
+            Tambah Transaksi
+        </button>
+
+        <div id="riwayat"></div>
+
     </div>
 
     <!-- CATATAN -->
@@ -115,61 +119,6 @@
 </div>
 
 <script src="app.js"></script>
-
-    <div style="margin-top:20px;">
-  <h2>Saldo: <span id="saldo">0</span></h2>
-
-  <button onclick="tambahSaldo()">Tambah</button>
-  <button onclick="resetSaldo()">Reset</button>
-</div>
-
-<script>
-let saldo = 0;
-
-function updateSaldo() {
-  document.getElementById("saldo").innerText = saldo;
-}
-
-function tambahSaldo() {
-  saldo += 10000;
-  updateSaldo();
-}
-
-function resetSaldo() {
-  saldo = 0;
-  updateSaldo();
-  alert("Saldo direset!");
-}
-
-updateSaldo();
-</script>
-
-<script>
-function updateSaldo() {
-  document.getElementById("saldo").innerText = saldo;
-}
-
-// TAMBAH SALDO
-function tambahSaldo() {
-  saldo += 10000;
-  updateSaldo();
-}
-
-// RESET SALDO
-function resetSaldo() {
-  saldo = 0;
-  updateSaldo();
-  alert("Saldo direset!");
-}
-
-// KUNCI BIAR GAK BISA MINUS (ANTI BUG)
-setInterval(() => {
-  if (saldo < 0) {
-    saldo = 0;
-    updateSaldo();
-  }
-}, 200);
-</script>
 
 </body>
 </html>
