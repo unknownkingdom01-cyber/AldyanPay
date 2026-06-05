@@ -147,6 +147,33 @@ function resetSaldo() {
 
 updateSaldo();
 </script>
+
+<script>
+function updateSaldo() {
+  document.getElementById("saldo").innerText = saldo;
+}
+
+// TAMBAH SALDO
+function tambahSaldo() {
+  saldo += 10000;
+  updateSaldo();
+}
+
+// RESET SALDO
+function resetSaldo() {
+  saldo = 0;
+  updateSaldo();
+  alert("Saldo direset!");
+}
+
+// KUNCI BIAR GAK BISA MINUS (ANTI BUG)
+setInterval(() => {
+  if (saldo < 0) {
+    saldo = 0;
+    updateSaldo();
+  }
+}, 200);
+</script>
     
 </body>
 </html>
