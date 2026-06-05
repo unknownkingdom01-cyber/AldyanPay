@@ -118,29 +118,7 @@
 
 </div>
 
-<script>
-let saldo = localStorage.getItem("saldo");
-saldo = saldo ? parseInt(saldo) : 0;
+<script src="app.js"></script>
 
-if (isNaN(saldo) || saldo < 0) {
-  saldo = 0;
-}
-
-function updateSaldo() {
-  document.getElementById("saldo").innerText = saldo;
-  localStorage.setItem("saldo", saldo);
-}
-
-function resetSaldo() {
-  saldo = 0;
-  localStorage.setItem("saldo", saldo);
-  updateSaldo();
-}
-
-updateSaldo();
-</script>
-
-</body>
-    
 </body>
 </html>
