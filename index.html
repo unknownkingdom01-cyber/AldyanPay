@@ -120,5 +120,33 @@
 
 <script src="app.js"></script>
 
+    <div style="margin-top:20px;">
+  <h2>Saldo: <span id="saldo">0</span></h2>
+
+  <button onclick="tambahSaldo()">Tambah</button>
+  <button onclick="resetSaldo()">Reset</button>
+</div>
+
+<script>
+let saldo = 0;
+
+function updateSaldo() {
+  document.getElementById("saldo").innerText = saldo;
+}
+
+function tambahSaldo() {
+  saldo += 10000;
+  updateSaldo();
+}
+
+function resetSaldo() {
+  saldo = 0;
+  updateSaldo();
+  alert("Saldo direset!");
+}
+
+updateSaldo();
+</script>
+    
 </body>
 </html>
